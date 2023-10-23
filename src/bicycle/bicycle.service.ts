@@ -33,6 +33,4 @@ export class BicycleService {
             where: { id },
         });
     }
-
-
 }
