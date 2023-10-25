@@ -41,7 +41,7 @@ model Route {
  }
 
 model Rental {
-  id Int @default(autoincrement()) @id
+  id @id
   brand String  
   type  String
   color String

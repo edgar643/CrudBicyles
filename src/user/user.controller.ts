@@ -29,11 +29,14 @@ export class UserController {
     async remove(@Param('id') id: number): Promise<User> {
         return this.UserService.remove(+id);
     }
-
+    /*Este método maneja solicitudes POST en la ruta "
+    isGenuine" y  autentica al usuario utilizando los datos
+     proporcionados en el cuerpo de la solicitud (@Body() data). 
+    Devuelve una promesa que se resuelve con un objeto que contiene un valor
+     booleano "isGenuineUser" que indica si el usuario es auténtico o no. */
     @Post("isGenuine")
-    async authenticateUser(@Body() data: User):Promise<{isGenuineUser: boolean }>
-     {
-       return await this.UserService.matchPassword(data);
-    }   
+    async authenticateUser(@Body() data: User): Promise<{ isGenuineUser: boolean }> {
+        return await this.UserService.matchPassword(data);
+    }
 
 }
