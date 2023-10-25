@@ -14,9 +14,10 @@ import { RouteController } from './route/route.controller';
 import { RentalService } from './rental/rental.service';
 import { RentalController } from './rental/rental.controller';
 
+
 @Module({
   imports: [],
-  controllers: [AppController,BicycleController, EventController, UserController, RouteController, RentalController],
+  controllers: [AppController,BicycleController, EventController, UserController, RouteController, RentalController, EventController],
   providers: [AppService,BicycleService, PrismaService, EventService, UserService, RouteService, RentalService],
 })
 export class AppModule {}
