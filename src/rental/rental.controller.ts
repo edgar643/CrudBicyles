@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common'
 import { Rental, Prisma } from '@prisma/client';
 import { RentalService } from './rental.service';
 
-@Controller('rentals')
+@Controller('rental/')
 export class RentalController {
     constructor(private rentalService: RentalService) { }
 
@@ -16,7 +16,7 @@ export class RentalController {
         return this.rentalService.update(+id, data);
     }
 
-    @Get(':id')
+    @Get('one/:id')
     async findOne(@Param('id') id: number): Promise<Rental | null> {
         return this.rentalService.findOne(+id);
     }
@@ -29,5 +29,24 @@ export class RentalController {
     @Delete(':id')
     async remove(@Param('id') id: number): Promise<Rental> {
         return this.rentalService.remove(+id);
+    }
+
+    @Get('available')
+    async findAvailableBikes(): Promise<Rental[]> {
+        return this.rentalService.findAvailableBikes();
+    }
+    @Get('occupied')
+    async findOccupiedBikes(): Promise<Rental[]> {
+        return this.rentalService.findOccupiedBikes();
+    }
+
+    @Put('book/:id')
+    async bookBike(@Param('id') id: number): Promise<Rental> {
+        return this.rentalService.bookBike(+id);
+    }
+
+    @Put('checkout/:id')
+    async checkOutBike(@Param('id') id: number): Promise<Rental> {
+        return this.rentalService.checkOutBike(+id);
     }
 }

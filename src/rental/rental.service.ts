@@ -14,6 +14,7 @@ export class RentalService {
         return this.prisma.rental.findMany();
     }
 
+
     async findOne(id: number): Promise<Rental | null> {
         return this.prisma.rental.findUnique({
             where: { id },
@@ -32,4 +33,39 @@ export class RentalService {
             where: { id },
         });
     }
+
+    async findAvailableBikes(): Promise<Rental[]> {
+        return this.prisma.rental.findMany({
+            where: {
+                status: 'Available'
+            }
+        });
+    }
+
+    async findOccupiedBikes(): Promise<Rental[]> {
+        return this.prisma.rental.findMany({
+            where: {
+                status: 'Occupied'
+            }
+        });
+    }
+
+    async bookBike(id: number): Promise<Rental> {
+        return this.prisma.rental.update({
+            where: { id },
+            data: {
+                status: 'Occupied'
+            }
+        });
+    }
+
+    async checkOutBike(id: number): Promise<Rental> {
+        return this.prisma.rental.update({
+            where: { id },
+            data: {
+                status: 'Available'
+            }
+        });
+    }
+
 }
