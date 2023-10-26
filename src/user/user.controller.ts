@@ -7,12 +7,12 @@ export class UserController {
 
     @Post()
     async create(@Body() data: Prisma.UserCreateInput): Promise<User> {
-        return this.UserService.create(data.user_name, data.password, data.rol);
+        return this.UserService.create(data.username, data.password, data.role);
     }
 
     @Put(':id')
     async update(@Param('id') id: number, @Body() data: Prisma.UserUpdateInput): Promise<User> {
-        return this.UserService.update(+id, data.user_name.toString(), data.password.toString(), data.rol.toString());
+        return this.UserService.update(+id, data.username.toString(), data.password.toString(), data.role.toString());
     }
 
     @Get(':id')

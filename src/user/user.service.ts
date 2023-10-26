@@ -15,9 +15,9 @@ export class UserService {
         // Guarda el usuario en la base de datos con la contraseña cifrada
         const user = await this.prisma.user.create({
             data: {
-                user_name: user_name,
+                username: user_name,
                 password: hashedPassword,
-                rol: rol,
+                role: rol,
             },
         });
 
@@ -41,9 +41,9 @@ export class UserService {
         return this.prisma.user.update({
             where: { id },
             data: {
-                user_name: user_name,
+                username: user_name,
                 password: hashedPassword,
-                rol: rol,
+                role: rol,
             }
         });
     }
@@ -57,7 +57,7 @@ export class UserService {
     async matchPassword(data: User): Promise<{ isGenuineUser: boolean }> {
         const user = await this.prisma.user.findFirst({
             where: {
-                user_name: data.user_name, // Campo por el que deseas buscar
+                username: data.username, // Campo por el que deseas buscar
             },
         });
         //Si el usuario no existe o la contraseña no es valida retorna false

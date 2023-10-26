@@ -12,9 +12,9 @@ datasource BikeTrackProDB {
 
 model User {
   id  Int @default(autoincrement()) @id
-  user_name String @unique
+  username String @unique
   password String
-  rol String
+  role String
 }
 model Bicycle {
   id  Int @default(autoincrement()) @id
@@ -41,7 +41,7 @@ model Route {
  }
 
 model Rental {
-  id @id
+  id Int @id
   brand String  
   type  String
   color String
